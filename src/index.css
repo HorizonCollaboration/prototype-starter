@@ -1,2 +1,4 @@
 /* Fixed by Horizon: don't change this file. Style with Tailwind classes instead. */
 @import "tailwindcss";
+/* The prototype's style (colours, font, corners), chosen on Horizon. */
+@import "./theme.css";

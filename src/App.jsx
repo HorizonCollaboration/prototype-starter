@@ -6,11 +6,11 @@ export default function App() {
 
     return (
         <main className="mx-auto max-w-3xl px-4 py-8">
-            <h1 className="text-3xl font-bold">Your prototype goes here</h1>
-            <p className="mt-2 text-stone-600">Horizon replaces this page with the first version of your prototype.</p>
+            <h1 className="font-display text-3xl font-bold">Your prototype goes here</h1>
+            <p className="mt-2 text-ink-muted">Horizon replaces this page with the first version of your prototype.</p>
             <ul className="mt-6 space-y-2">
                 {items.map((item) => (
-                    <li key={item.id} className="flex items-center gap-3 rounded-lg bg-white p-4 shadow-sm">
+                    <li key={item.id} className="flex items-center gap-3 rounded-card bg-surface p-4 shadow-card">
                         <input
                             type="checkbox"
                             checked={done.includes(item.id)}

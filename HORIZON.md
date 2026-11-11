@@ -10,7 +10,7 @@ A prototype is for trying an idea and shaping it together. Once a community agre
 - `src/sampleData.js`: made-up data to try it with.
 - `src/components/`: any other pieces of the screen.
 
-Everything else is fixed, so every prototype is predictable to build, safe to publish and looks the same around the edges.
+Everything else is fixed, so every prototype is predictable to build, safe to publish and looks the same around the edges. That includes `src/theme.css`: the prototype's style (colours, font and corners), which the community chooses on Horizon.
 
 ## Rules
 
@@ -18,6 +18,7 @@ Everything else is fixed, so every prototype is predictable to build, safe to pu
 - **Nothing leaves the browser.** No server and no database. Anything people enter is kept in their own browser with `useStoredState` from `src/storage.js`.
 - **No other websites.** The published page can't load scripts from, or send data to, anywhere else.
 - **React and Tailwind only.** No other packages.
+- **Style with the theme's names.** Colours and shapes come from `src/theme.css`, as Tailwind classes like `bg-surface`, `text-ink`, `bg-primary` and `rounded-card`, never Tailwind's own colours like `blue-500`. That way the style can be changed without rewriting the prototype.
 
 ## Running it yourself
 
