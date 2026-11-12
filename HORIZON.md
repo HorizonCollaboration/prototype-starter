@@ -17,7 +17,7 @@ Everything else is fixed, so every prototype is predictable to build, safe to pu
 - **Sample data only.** No real names, patients, clients or personal details.
 - **Nothing leaves the browser.** No server and no database. Anything people enter is kept in their own browser with `useStoredState` from `src/storage.js`.
 - **No other websites.** The published page can't load scripts from, or send data to, anywhere else.
-- **React and Tailwind only.** No other packages.
+- **React, Tailwind and Lucide's icons only** (`import { House } from 'lucide-react'`). No other packages.
 - **Style with the theme's names.** Colours and shapes come from `src/theme.css`, as Tailwind classes like `bg-surface`, `text-ink`, `bg-primary` and `rounded-card`, never Tailwind's own colours like `blue-500`. That way the style can be changed without rewriting the prototype.
 
 ## Running it yourself
