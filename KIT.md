@@ -2,13 +2,13 @@
 
 Every screen is built from these components, so every prototype looks properly designed and works well on a phone. Import them from the kit, never from anywhere else: `import { AppShell, Button, List, Row } from './kit/index.js'` in `src/App.jsx`, `'../kit/index.js'` in `src/components/`. Icons come from Lucide: `import { Store } from 'lucide-react'`.
 
-Don't style colours, borders or shadows yourself: the kit does that. Use Tailwind only for layout and spacing (`flex`, `grid`, `gap-4`, `md:grid-cols-3`) and plain text sizes.
+The look is black, white and grey, and colour only ever means something: a tag's dot (urgent, running low, done) or a message. Don't style colours, borders or shadows yourself: the kit does that. Use Tailwind only for layout and spacing (`flex`, `grid`, `gap-4`, `md:grid-cols-3`) and plain text sizes.
 
 ## The app
 
 ```jsx
 <AppShell
-  name="Food bank needs" icon={Apple} tone="orange"
+  name="Food bank needs" icon={Apple}
   current={tab} onChange={setTab}
   tabs={[
     { id: 'needs', label: "What's needed", icon: ListChecks, count: 9, countTone: 'urgent' },
@@ -39,13 +39,13 @@ A sidebar on a computer, a tab bar at the bottom on a phone. Add `nav="top"` for
   {items.map((item) => (
     <Row
       key={item.id}
-      media={<Tile icon={Milk} tone="sky" />}
+      media={<Tile icon={Milk} />}
       title={item.name}
       description="Riverside · updated today"
       onClick={() => open(item.id)}
       actions={<Button size="sm">Follow</Button>}
     >
-      <Tag tone="urgent" dot>2 urgent</Tag>
+      <Tag tone="urgent">2 urgent</Tag>
     </Row>
   ))}
 </List>
@@ -56,10 +56,10 @@ Use `<List framed={false}>` inside a `Card`, and `compact` rows there. Use cards
 ## Pieces
 
 - `Button`: `variant` primary (one per screen, the main action), secondary, outline (default), ghost, danger, link; `size` md, sm, icon, icon-sm (icon buttons need `aria-label`). Put a Lucide icon before the words when it helps.
-- `Tile icon={…} tone="…"`: a picture for a thing. `tone`: primary, orange, amber, green, teal, sky, indigo, violet, pink, red, neutral. `size`: sm, md, lg. Give each kind of thing its own icon and tone, the same everywhere.
-- `Tag tone="…"`: a state. `tone`: neutral, primary, urgent, warning, good, info; `dot` adds a small dot, `icon` a Lucide icon.
+- `Tile icon={…}`: a picture for a thing, a grey Lucide icon on a quiet white tile. `size`: sm, md, lg. Give each kind of thing its own icon, the same everywhere.
+- `Tag tone="…"`: a state, with a small coloured dot for its meaning. `tone`: neutral (default), primary, urgent (red), warning (amber), good (green), info (blue); `icon` adds a Lucide icon.
 - `Card title description action footer`: a box for a few related things.
-- `Stat label value icon tone hint`: a big number for a summary.
+- `Stat label value icon hint`: a big number for a summary.
 - `Field label hint error value onChange type placeholder`: a labelled text box; `onChange` hands back the text. `TextArea` likewise.
 - `Select label|ariaLabel value onChange options={[{ value, label }]}`: choose one.
 - `Segmented ariaLabel value onChange options={[{ value, label }]}`: a few choices side by side.

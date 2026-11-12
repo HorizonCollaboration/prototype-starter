@@ -38,29 +38,31 @@ export function Tile({ icon: Icon, tone = 'primary', size = 'md' }) {
     );
 }
 
-/** A small tag for a state. tone: neutral, primary, urgent, warning, good, info. dot shows a small dot; icon a Lucide icon. */
-export function Tag({ tone = 'neutral', dot = false, icon: Icon, children }) {
+/** A small tag for a state. tone: neutral, primary, urgent, warning, good, info; its dot shows the colour. icon adds a Lucide icon. */
+export function Tag({ tone = 'neutral', dot = true, icon: Icon, children }) {
     const colours = TAG_TONES[tone] ?? TAG_TONES.neutral;
+    // The dot carries the meaning, so a tag with a meaning always has one.
+    const showDot = dot || tone !== 'neutral';
 
     return (
-        <Badge className={cn('border-transparent', colours.tag)}>
-            {dot && <span className={cn('size-1.5 rounded-full', colours.dot)} aria-hidden="true" />}
+        <Badge className={cn('font-normal', colours.tag)}>
+            {showDot && <span className={cn('size-1.5 rounded-full', colours.dot)} aria-hidden="true" />}
             {Icon && <Icon aria-hidden="true" />}
             {children}
         </Badge>
     );
 }
 
-/** A big number with a label, for a summary at the top of a screen. */
-export function Stat({ label, value, icon, tone = 'primary', hint }) {
+/** A big number with a label, for a summary at the top of a screen. icon, if given, sits quietly beside the label. */
+export function Stat({ label, value, icon: Icon, hint }) {
     return (
-        <div className="flex items-center gap-3 rounded-2xl border p-4">
-            {icon && <Tile icon={icon} tone={tone} />}
-            <div className="flex flex-col">
-                <span className="text-2xl font-semibold tracking-tight tabular-nums">{value}</span>
-                <span className="text-sm text-muted-foreground">{label}</span>
-                {hint && <span className="text-xs text-muted-foreground">{hint}</span>}
-            </div>
+        <div className="flex min-w-0 flex-col gap-1 rounded-xl border p-3 sm:p-4">
+            <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                {Icon && <Icon className="size-3.5 shrink-0 max-sm:hidden" strokeWidth={1.75} aria-hidden="true" />}
+                {label}
+            </span>
+            <span className="text-2xl font-semibold tracking-tight tabular-nums">{value}</span>
+            {hint && <span className="text-xs text-muted-foreground">{hint}</span>}
         </div>
     );
 }
