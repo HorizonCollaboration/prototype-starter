@@ -21,7 +21,7 @@ Don't style colours, borders or shadows yourself: the kit does that. Use Tailwin
 </AppShell>
 ```
 
-A sidebar on a computer, a tab bar at the bottom on a phone. Keep the current tab with `useStoredState`. An app that only does one job can leave out `tabs`.
+A sidebar on a computer, a tab bar at the bottom on a phone. Add `nav="top"` for a bar across the top on a computer instead, when people ask for navigation along the top (the phone keeps its bottom tab bar). These are the only two layouts. Keep the current tab with `useStoredState`. An app that only does one job can leave out `tabs`.
 
 ## A screen
 
