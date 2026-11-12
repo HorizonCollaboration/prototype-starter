@@ -57,7 +57,7 @@ Use `<List framed={false}>` inside a `Card`, and `compact` rows there. Use cards
 
 - `Button`: `variant` primary (one per screen, the main action), secondary, outline (default), ghost, danger, link; `size` md, sm, icon, icon-sm (icon buttons need `aria-label`). Put a Lucide icon before the words when it helps.
 - `Tile icon={…}`: a picture for a thing, a grey Lucide icon on a quiet white tile. `size`: sm, md, lg. Give each kind of thing its own icon, the same everywhere.
-- `Tag tone="…"`: a state, with a small coloured dot for its meaning. `tone`: neutral (default), primary, urgent (red), warning (amber), good (green), info (blue); `icon` adds a Lucide icon.
+- `Tag tone="…"`: a state, with a small coloured dot for its meaning. `tone`: neutral (default), primary, urgent (red), warning (amber), good (green), info (blue). A neutral tag has no dot unless you add `dot`; `icon` adds a Lucide icon. The words say the state too, so it never relies on colour alone.
 - `Card title description action footer`: a box for a few related things.
 - `Stat label value icon hint`: a big number for a summary.
 - `Field label hint error value onChange type placeholder`: a labelled text box; `onChange` hands back the text. `TextArea` likewise.

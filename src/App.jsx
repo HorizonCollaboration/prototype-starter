@@ -10,7 +10,7 @@ export default function App() {
     const toggle = (id) => setDone(done.includes(id) ? done.filter((doneId) => doneId !== id) : [...done, id]);
 
     return (
-        <AppShell name="Your prototype" icon={Sparkles} tone="primary" current={tab} onChange={setTab} tabs={[{ id: 'home', label: 'Home', icon: House }]}>
+        <AppShell name="Your prototype" icon={Sparkles} current={tab} onChange={setTab} tabs={[{ id: 'home', label: 'Home', icon: House }]}>
             <ScreenHeader icon={Sparkles} title="Your prototype goes here" description="Horizon replaces this screen with the first version of your prototype." />
             {items.length === 0 ? (
                 <EmptyState title="Nothing yet" description="Sample items will show here." />
@@ -19,7 +19,7 @@ export default function App() {
                     {items.map((item) => (
                         <Row
                             key={item.id}
-                            media={<Tile icon={CircleCheck} tone={done.includes(item.id) ? 'green' : 'neutral'} />}
+                            media={<Tile icon={CircleCheck} />}
                             title={item.title}
                             actions={
                                 <Button size="sm" variant={done.includes(item.id) ? 'secondary' : 'outline'} onClick={() => toggle(item.id)}>

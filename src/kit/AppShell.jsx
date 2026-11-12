@@ -103,7 +103,7 @@ export function AppShell({ name, icon, tone = 'orange', nav = 'side', tabs = [],
             {hasTabs && (
                 <nav aria-label="Screens" className="fixed inset-x-0 bottom-0 z-20 border-t bg-background/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden">
                     <ul className="grid" style={{ gridTemplateColumns: `repeat(${tabs.length}, minmax(0, 1fr))` }}>
-                        {tabs.map(({ id, label, icon: Icon, count: value }) => (
+                        {tabs.map(({ id, label, icon: Icon, count: value, countTone }) => (
                             <li key={id}>
                                 <button
                                     type="button"
@@ -114,7 +114,12 @@ export function AppShell({ name, icon, tone = 'orange', nav = 'side', tabs = [],
                                     {Icon && <Icon className="size-5" strokeWidth={current === id ? 2.25 : 1.75} aria-hidden="true" />}
                                     {label}
                                     {value > 0 && (
-                                        <span className="absolute top-2 left-[calc(50%+6px)] min-w-4 rounded-full bg-primary px-1 text-[10px] leading-4 font-semibold text-primary-foreground tabular-nums">
+                                        <span
+                                            className={cn(
+                                                'absolute top-2 left-[calc(50%+6px)] min-w-4 rounded-full px-1 text-[10px] leading-4 font-semibold text-white tabular-nums',
+                                                countTone === 'urgent' ? 'bg-red-600' : 'bg-primary',
+                                            )}
+                                        >
                                             {value}
                                         </span>
                                     )}
