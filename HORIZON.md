@@ -8,17 +8,19 @@ A prototype is for trying an idea and shaping it together. Once a community agre
 
 - `src/App.jsx`: the prototype's main screen.
 - `src/sampleData.js`: made-up data to try it with.
-- `src/components/`: any other pieces of the screen.
+- `src/components/`: the prototype's own pieces, as `PascalCase.jsx`.
 
-Everything else is fixed, so every prototype is predictable to build, safe to publish and looks the same around the edges. That includes `src/theme.css`: the prototype's style (colours, font and corners), which the community chooses on Horizon.
+Everything else is fixed, so every prototype is predictable to build, safe to publish and looks properly designed. That includes:
+
+- `src/kit/`: Horizon's kit, the components every screen is built from (see `KIT.md`). They're built on [shadcn/ui](https://ui.shadcn.com) (in `src/components/ui/`) for now; prototypes only use the kit, so the library underneath can change without touching a prototype.
+- `src/theme.css`: the look (font and colours), which the community chooses on Horizon.
 
 ## Rules
 
 - **Sample data only.** No real names, patients, clients or personal details.
 - **Nothing leaves the browser.** No server and no database. Anything people enter is kept in their own browser with `useStoredState` from `src/storage.js`.
 - **No other websites.** The published page can't load scripts from, or send data to, anywhere else.
-- **React, Tailwind and Lucide's icons only** (`import { House } from 'lucide-react'`). No other packages.
-- **Style with the theme's names.** Colours and shapes come from `src/theme.css`, as Tailwind classes like `bg-surface`, `text-ink`, `bg-primary` and `rounded-card`, never Tailwind's own colours like `blue-500`. That way the style can be changed without rewriting the prototype.
+- **Build with the kit.** Screens use the kit's components and Lucide's icons (`import { House } from 'lucide-react'`). Tailwind is for layout and spacing only; colours come from the kit's tones, never Tailwind's own colours like `blue-500`. No other packages.
 
 ## Running it yourself
 

@@ -1,27 +1,37 @@
+import { CircleCheck, House, Sparkles } from 'lucide-react';
+import { AppShell, Button, EmptyState, List, Row, ScreenHeader, Tag, Tile } from './kit/index.js';
 import { items } from './sampleData.js';
 import { useStoredState } from './storage.js';
 
 export default function App() {
+    const [tab, setTab] = useStoredState('tab', 'home');
     const [done, setDone] = useStoredState('done', []);
 
+    const toggle = (id) => setDone(done.includes(id) ? done.filter((doneId) => doneId !== id) : [...done, id]);
+
     return (
-        <main className="mx-auto max-w-3xl px-4 py-8">
-            <h1 className="font-display text-3xl font-bold">Your prototype goes here</h1>
-            <p className="mt-2 text-ink-muted">Horizon replaces this page with the first version of your prototype.</p>
-            <ul className="mt-6 space-y-2">
-                {items.map((item) => (
-                    <li key={item.id} className="flex items-center gap-3 rounded-card bg-surface p-4 shadow-card">
-                        <input
-                            type="checkbox"
-                            checked={done.includes(item.id)}
-                            onChange={() =>
-                                setDone(done.includes(item.id) ? done.filter((id) => id !== item.id) : [...done, item.id])
+        <AppShell name="Your prototype" icon={Sparkles} tone="primary" current={tab} onChange={setTab} tabs={[{ id: 'home', label: 'Home', icon: House }]}>
+            <ScreenHeader icon={Sparkles} title="Your prototype goes here" description="Horizon replaces this screen with the first version of your prototype." />
+            {items.length === 0 ? (
+                <EmptyState title="Nothing yet" description="Sample items will show here." />
+            ) : (
+                <List>
+                    {items.map((item) => (
+                        <Row
+                            key={item.id}
+                            media={<Tile icon={CircleCheck} tone={done.includes(item.id) ? 'green' : 'neutral'} />}
+                            title={item.title}
+                            actions={
+                                <Button size="sm" variant={done.includes(item.id) ? 'secondary' : 'outline'} onClick={() => toggle(item.id)}>
+                                    {done.includes(item.id) ? 'Done' : 'Mark as done'}
+                                </Button>
                             }
-                        />
-                        {item.title}
-                    </li>
-                ))}
-            </ul>
-        </main>
+                        >
+                            {done.includes(item.id) && <Tag tone="good">Done</Tag>}
+                        </Row>
+                    ))}
+                </List>
+            )}
+        </AppShell>
     );
 }
